@@ -1,0 +1,8 @@
+# 依赖与构建产物（这个插件零依赖，一般不会出现）
+node_modules/
+*.tgz
+
+# 系统杂项
+.DS_Store
+Thumbs.db
+desktop.ini

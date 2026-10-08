@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" role="img" aria-label="应声 · 快捷输入">
+  <g fill="#4d6bfe">
+    <rect x="2.6" y="2.6" width="5.4" height="5.4" rx="1.7"/>
+    <rect x="9.3" y="2.6" width="5.4" height="5.4" rx="1.7"/>
+    <rect x="16" y="2.6" width="5.4" height="5.4" rx="1.7"/>
+    <rect x="2.6" y="9.3" width="5.4" height="5.4" rx="1.7"/>
+    <rect x="16" y="9.3" width="5.4" height="5.4" rx="1.7"/>
+    <rect x="2.6" y="16" width="5.4" height="5.4" rx="1.7"/>
+    <rect x="9.3" y="16" width="5.4" height="5.4" rx="1.7"/>
+    <rect x="16" y="16" width="5.4" height="5.4" rx="1.7"/>
+  </g>
+  <rect x="9.3" y="9.3" width="5.4" height="5.4" rx="1.7" fill="#4d6bfe" opacity="0.45"/>
+</svg>

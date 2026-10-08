@@ -1,0 +1,19 @@
+# 应声 · 快捷输入的配置层。
+#
+# 这里插一行，就把「宿主半区（index.js）+ 浏览器半区（client.js）」一起挂上；
+# 两个半区同属一个包，靠 package.json 里的 dsh.bundle / dsh.client 声明。
+
+- insert:
+    - id: quick-input
+      name: 'dsh-quick-input'
+      # config 可选。只在 $DSH_HOME/quick-input/presets.json 还不存在时，
+      # 作为「种子」写进去一次；生成之后就以那个文件为准，这里改了不起作用。
+      # 想换预设，直接用界面里的「编辑」，或者删掉那个文件让它重新播种。
+      #
+      # config:
+      #   presets:
+      #     pages:
+      #       - title: 常用
+      #         cells:
+      #           - { label: 继续, text: 继续 }
+      #           - { label: 说短点, text: 用更短的版本重说一遍。 }

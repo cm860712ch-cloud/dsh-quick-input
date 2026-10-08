@@ -1,0 +1,64 @@
+{
+  "name": "dsh-quick-input",
+  "version": "0.1.0",
+  "description": "应声 · 快捷输入：输入框左侧的九宫格快捷短语面板，点一格就把预设文字插到光标处。9-grid quick-phrase pad docked left of the composer: click a cell to insert preset text at the caret. UI follows the DSH language (中文 / English).",
+  "type": "module",
+  "license": "MIT",
+  "author": "cm860712ch-cloud",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cm860712ch-cloud/dsh-quick-input.git"
+  },
+  "homepage": "https://github.com/cm860712ch-cloud/dsh-quick-input#readme",
+  "bugs": {
+    "url": "https://github.com/cm860712ch-cloud/dsh-quick-input/issues"
+  },
+  "keywords": [
+    "deepseek",
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "client-plugin",
+    "quick-input",
+    "quick-phrases",
+    "presets",
+    "composer",
+    "snippets",
+    "i18n",
+    "bilingual"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json"
+  },
+  "icon": "./icon.svg",
+  "files": [
+    "index.js",
+    "client.js",
+    "presets.js",
+    "cordis.patch.yml",
+    "icon.svg",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": ["@deepseek-ai/dsh-client-ui-conversation"]
+    }
+  }
+}

@@ -2,6 +2,8 @@
 
 输入框左边的九宫格，**常驻**在那里、**和输入框等高**。点一格，预设好的文字就**插到草稿的光标处**。
 
+![应声 · 快捷输入：输入框左侧的九宫格快捷短语面板](assets/preview.zh.svg)
+
 ```
    ┌───────────────┐  ┌──────────────────────────┐
    │ 继续  │先给结论│  │  输入你的消息…            │
@@ -154,6 +156,8 @@ node dev\verify.mjs
 **Quick phrases, one click away — a 3×3 grid docked to the left of the composer.**
 Click a cell and its preset text is inserted at the caret. The pad stays resident (remembers being open across
 page reloads), matches the composer's height, and adapts its width to the space left of the input box.
+
+![dsh-quick-input — a 3×3 quick-phrase pad docked to the left of the composer](assets/preview.en.svg)
 
 - **UI language** follows the DSH language setting (Settings → General → Language): Chinese UI shows Chinese,
   English UI shows English. The starter phrases seeded on first run follow the UI language too

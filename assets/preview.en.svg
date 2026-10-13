@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 380" width="1160" height="380" role="img" aria-label="Quick-input pad docked left of the composer, matched to its height">
+  <rect x="0" y="0" width="1160" height="380" rx="18" fill="#f7f8fa"/>
+
+  <!-- quick-input pad -->
+  <rect x="40" y="62" width="340" height="232" rx="14" fill="#ffffff" stroke="#e3e6eb" stroke-width="1.5"/>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13" fill="#1f2328">
+    <g>
+      <rect x="50" y="72" width="102" height="60" rx="8" fill="none" stroke="#e8eaee"/>
+      <text x="60" y="107">Continue</text>
+      <rect x="159" y="72" width="102" height="60" rx="8" fill="none" stroke="#e8eaee"/>
+      <text x="169" y="107">Answer first</text>
+      <rect x="268" y="72" width="102" height="60" rx="8" fill="none" stroke="#e8eaee"/>
+      <text x="278" y="107">Shorter</text>
+
+      <rect x="50" y="138" width="102" height="60" rx="8" fill="none" stroke="#e8eaee"/>
+      <text x="60" y="173">Steps</text>
+      <rect x="159" y="138" width="102" height="60" rx="8" fill="none" stroke="#e8eaee"/>
+      <text x="169" y="173">Plain words</text>
+      <rect x="268" y="138" width="102" height="60" rx="8" fill="none" stroke="#e8eaee"/>
+      <text x="278" y="173">Compare</text>
+
+      <rect x="50" y="204" width="102" height="60" rx="8" fill="none" stroke="#e8eaee"/>
+      <text x="60" y="239">Risks</text>
+      <rect x="159" y="204" width="102" height="60" rx="8" fill="none" stroke="#e8eaee"/>
+      <text x="169" y="239">Example</text>
+      <rect x="268" y="204" width="102" height="60" rx="8" fill="none" stroke="#e8eaee"/>
+      <text x="278" y="239">You decide</text>
+    </g>
+  </g>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" fill="#6b7280">
+    <text x="52" y="284">‹</text>
+    <text x="66" y="284">1/2</text>
+    <text x="92" y="284">›</text>
+    <text x="116" y="284" fill="#1f2328">Common</text>
+    <text x="336" y="284">✎</text>
+    <text x="356" y="284">✕</text>
+  </g>
+
+  <!-- composer card -->
+  <rect x="404" y="62" width="716" height="232" rx="14" fill="#ffffff" stroke="#e3e6eb" stroke-width="1.5"/>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">
+    <text x="432" y="104" font-size="14" fill="#9aa1ab">Type your message…</text>
+    <!-- the ⊞ toggle at the far left of the tool row -->
+    <rect x="430" y="248" width="28" height="28" rx="14" fill="#eef0f3"/>
+    <g fill="#1f2328">
+      <rect x="437" y="255" width="4.5" height="4.5" rx="1.4"/>
+      <rect x="444.5" y="255" width="4.5" height="4.5" rx="1.4"/>
+      <rect x="452" y="255" width="4.5" height="4.5" rx="1.4"/>
+      <rect x="437" y="262.5" width="4.5" height="4.5" rx="1.4"/>
+      <rect x="444.5" y="262.5" width="4.5" height="4.5" rx="1.4"/>
+      <rect x="452" y="262.5" width="4.5" height="4.5" rx="1.4"/>
+      <rect x="437" y="270" width="4.5" height="4.5" rx="1.4"/>
+      <rect x="444.5" y="270" width="4.5" height="4.5" rx="1.4"/>
+      <rect x="452" y="270" width="4.5" height="4.5" rx="1.4"/>
+    </g>
+    <text x="472" y="267" font-size="13" fill="#6b7280">Model</text>
+    <circle cx="1074" cy="262" r="17" fill="#4d6bfe"/>
+    <path d="M1067 262 h13 M1074 255 v14" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" transform="rotate(45 1074 262)"/>
+  </g>
+
+  <text x="580" y="340" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13" fill="#6b7280" text-anchor="middle">The pad stays docked to the left of the composer, matched to its height — click a cell to insert that phrase at the caret</text>
+</svg>

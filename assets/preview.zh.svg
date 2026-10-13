@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 380" width="1160" height="380" role="img" aria-label="快捷输入面板贴在输入框左侧、与输入框等高">
+  <rect x="0" y="0" width="1160" height="380" rx="18" fill="#f7f8fa"/>
+
+  <!-- 九宫格面板 -->
+  <rect x="40" y="62" width="340" height="232" rx="14" fill="#ffffff" stroke="#e3e6eb" stroke-width="1.5"/>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="13" fill="#1f2328">
+    <g>
+      <rect x="50" y="72" width="102" height="60" rx="8" fill="none" stroke="#e8eaee"/>
+      <text x="60" y="107">继续</text>
+      <rect x="159" y="72" width="102" height="60" rx="8" fill="none" stroke="#e8eaee"/>
+      <text x="169" y="107">先给结论</text>
+      <rect x="268" y="72" width="102" height="60" rx="8" fill="none" stroke="#e8eaee"/>
+      <text x="278" y="107">说短点</text>
+
+      <rect x="50" y="138" width="102" height="60" rx="8" fill="none" stroke="#e8eaee"/>
+      <text x="60" y="173">列步骤</text>
+      <rect x="159" y="138" width="102" height="60" rx="8" fill="none" stroke="#e8eaee"/>
+      <text x="169" y="173">说人话</text>
+      <rect x="268" y="138" width="102" height="60" rx="8" fill="none" stroke="#e8eaee"/>
+      <text x="278" y="173">表格对比</text>
+
+      <rect x="50" y="204" width="102" height="60" rx="8" fill="none" stroke="#e8eaee"/>
+      <text x="60" y="239">风险点</text>
+      <rect x="159" y="204" width="102" height="60" rx="8" fill="none" stroke="#e8eaee"/>
+      <text x="169" y="239">举个例</text>
+      <rect x="268" y="204" width="102" height="60" rx="8" fill="none" stroke="#e8eaee"/>
+      <text x="278" y="239">你来定</text>
+    </g>
+  </g>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="11" fill="#6b7280">
+    <text x="52" y="284">‹</text>
+    <text x="66" y="284">1/2</text>
+    <text x="92" y="284">›</text>
+    <text x="116" y="284" fill="#1f2328">常用</text>
+    <text x="336" y="284">✎</text>
+    <text x="356" y="284">✕</text>
+  </g>
+
+  <!-- 输入框卡片 -->
+  <rect x="404" y="62" width="716" height="232" rx="14" fill="#ffffff" stroke="#e3e6eb" stroke-width="1.5"/>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif">
+    <text x="432" y="104" font-size="14" fill="#9aa1ab">输入你的消息…</text>
+    <!-- 工具行最左边的 ⊞ -->
+    <rect x="430" y="248" width="28" height="28" rx="14" fill="#eef0f3"/>
+    <g fill="#1f2328">
+      <rect x="437" y="255" width="4.5" height="4.5" rx="1.4"/>
+      <rect x="444.5" y="255" width="4.5" height="4.5" rx="1.4"/>
+      <rect x="452" y="255" width="4.5" height="4.5" rx="1.4"/>
+      <rect x="437" y="262.5" width="4.5" height="4.5" rx="1.4"/>
+      <rect x="444.5" y="262.5" width="4.5" height="4.5" rx="1.4"/>
+      <rect x="452" y="262.5" width="4.5" height="4.5" rx="1.4"/>
+      <rect x="437" y="270" width="4.5" height="4.5" rx="1.4"/>
+      <rect x="444.5" y="270" width="4.5" height="4.5" rx="1.4"/>
+      <rect x="452" y="270" width="4.5" height="4.5" rx="1.4"/>
+    </g>
+    <text x="472" y="267" font-size="13" fill="#6b7280">模型</text>
+    <!-- 发送 -->
+    <circle cx="1074" cy="262" r="17" fill="#4d6bfe"/>
+    <path d="M1067 262 h13 M1074 255 v14" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" transform="rotate(45 1074 262)"/>
+  </g>
+
+  <text x="580" y="340" font-family="system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="13" fill="#6b7280" text-anchor="middle">九宫格常驻在输入框左侧，与输入框等高 · 点一格就把该条短语插到光标处</text>
+</svg>

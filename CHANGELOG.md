@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased — 2026-11-03
+
+文档维护，无代码改动。
+
+- README 补上中英双语的界面预览图（`assets/preview.zh.svg` / `assets/preview.en.svg`）。
+- README 新增「更新记录」与「觉得有用的话」两节，补上仓库与市场页链接。
+
 ## 0.1.0 — 2026-10-08
 
 首个版本。

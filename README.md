@@ -151,6 +151,21 @@ node dev\verify.mjs
 
 ---
 
+## 更新记录
+
+见 [CHANGELOG](CHANGELOG.md)。
+
+---
+
+## 觉得有用的话
+
+如果这个小面板帮你省了点时间，欢迎给仓库点个 ⭐ —— 对个人项目来说，这是最直接的鼓励，也能让更多人看到它。
+
+- 仓库：<https://github.com/cm860712ch-cloud/dsh-quick-input>
+- 插件市场页：<https://awesome-dsh-plugin.com/p/cm860712ch-cloud/dsh-quick-input/>
+- 仓库：<https://github.com/cm860712ch-cloud/dsh-quick-input>
+---
+
 ## English
 
 **Quick phrases, one click away — a 3×3 grid docked to the left of the composer.**
@@ -197,4 +212,11 @@ replace eyeballing the real page.
 - Docked left by default; if the space left of the composer is under 120px the pad falls back to a floating
   panel above it.
 - No keyboard shortcuts are taken: Esc and digits still belong to the composer.
+
+### Found it useful?
+
+A ⭐ on the repo is the most direct encouragement for a solo project — and it helps others find it:
+<https://github.com/cm860712ch-cloud/dsh-quick-input>
+
+Market page: <https://awesome-dsh-plugin.com/p/cm860712ch-cloud/dsh-quick-input/>
 

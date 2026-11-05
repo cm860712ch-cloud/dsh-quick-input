@@ -163,7 +163,7 @@ node dev\verify.mjs
 
 - 仓库：<https://github.com/cm860712ch-cloud/dsh-quick-input>
 - 插件市场页：<https://awesome-dsh-plugin.com/p/cm860712ch-cloud/dsh-quick-input/>
-- 仓库：<https://github.com/cm860712ch-cloud/dsh-quick-input>
+
 ---
 
 ## English

@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+﻿#!/usr/bin/env node
 /**
  * 应声 · 快捷输入 —— 离线自检。
  *
@@ -17,6 +17,19 @@ import { fileURLToPath, pathToFileURL } from 'node:url'
 import vm from 'node:vm'
 
 import { CELLS_PER_PAGE, MAX_PAGES, defaultPresets, normalizePresets } from '../presets.js'
+
+// 种子内容会变（见 presets.js），测试一律从 defaultPresets() 取，不要写死文案。
+const SEED_ZH = defaultPresets()
+const SEED_EN = defaultPresets('en')
+const SEED_ZH_TITLE0 = SEED_ZH.pages[0].title
+const SEED_ZH_TITLE1 = SEED_ZH.pages[1]?.title ?? ''
+const SEED_ZH_CELL0 = SEED_ZH.pages[0].cells[0]?.text ?? ''
+const SEED_ZH_CELL1 = SEED_ZH.pages[0].cells[1]?.text ?? ''
+const SEED_ZH_P2CELL0 = SEED_ZH.pages[1]?.cells?.[0]?.text ?? ''
+const SEED_ZH_CELL2 = SEED_ZH.pages[0].cells[2]?.text ?? ''
+const SEED_ZH_CELL3 = SEED_ZH.pages[0].cells[3]?.text ?? ''
+const SEED_ZH_CELL4 = SEED_ZH.pages[0].cells[4]?.text ?? ''
+
 
 const HERE = dirname(fileURLToPath(import.meta.url))
 const PKG = resolve(HERE, '..')
@@ -206,8 +219,8 @@ check(helloBad.status === 200 && helloBad.body?.value?.version === 'unknown', '�
 
 // 英文界面先来一次：文件还不存在时，种的是英文示例。
 const enFirst = await callRoute(route, 'GET', '/quick-input/presets?lang=en')
-check(enFirst.body?.value?.pages?.[0]?.title === 'Common', '英文界面首次打开种英文示例', String(enFirst.body?.value?.pages?.[0]?.title))
-check(enFirst.body?.value?.pages?.[0]?.cells?.[0]?.text === 'Continue', '英文种子的第一格是 Continue')
+check(enFirst.body?.value?.pages?.[0]?.title === SEED_EN.pages[0].title, '英文界面首次打开种英文示例', String(enFirst.body?.value?.pages?.[0]?.title))
+check(enFirst.body?.value?.pages?.[0]?.cells?.[0]?.text === SEED_EN.pages[0].cells[0].text, '英文种子的第一格与英文种子一致')
 rmSync(presetsFile, { force: true })
 check(!existsSync(presetsFile), '清掉刚生成的英文种子，接着验中文种子')
 
@@ -218,7 +231,7 @@ check(
   first.body?.value?.pages?.every((page) => page.cells.length === CELLS_PER_PAGE),
   `每页都是 ${CELLS_PER_PAGE} 格`,
 )
-check(first.body?.value?.pages?.[0]?.cells?.[0]?.text === '继续', '第一格内容是种子里的「继续」')
+check(first.body?.value?.pages?.[0]?.cells?.[0]?.text === SEED_ZH_CELL0, '第一格内容与种子一致')
 check(existsSync(presetsFile), '种子已落盘到 $DSH_HOME/quick-input/presets.json', presetsFile)
 
 const emptyPost = await callRoute(route, 'POST', '/quick-input/presets', JSON.stringify({ pages: [] }))
@@ -670,7 +683,7 @@ click(retryButton)
 await flush()
 await flush()
 panelTree = renderPanel()
-check(findElement(panelTree, (node) => node.props?.title === '继续') !== null, '点「重试」后九宫格正常加载')
+check(findElement(panelTree, (node) => node.props?.title === SEED_ZH_CELL0) !== null, '点「重试」后九宫格正常加载')
 check(
   fetchCalls.some((call) => call.path.startsWith('/quick-input/presets') && call.method === 'GET'),
   '面板打开时拉了 GET /quick-input/presets',
@@ -694,35 +707,35 @@ check(cssText.includes('-webkit-line-clamp:2'), '格子文字限制两行')
 check(cssText.includes('font-size:11px'), '格子字号 11px（比 13px 正文小）')
 check(findElement(panelTree, (node) => node.props?.className === 'dsq-bar') !== null, '底部有一条 14px 控制栏')
 const firstBar = findElement(panelTree, (node) => node.props?.className === 'dsq-bar')
-check(textOf(firstBar).includes('常用'), '控制栏里显示当前页名（tab 名称）', textOf(firstBar))
+check(textOf(firstBar).includes(SEED_ZH_TITLE0), '控制栏里显示当前页名（tab 名称）', textOf(firstBar))
 const nameSpan = findElement(panelTree, (node) => node.props?.className === 'dsq-pagename')
-check(nameSpan?.props?.title === '常用 · 第 1/2 页', '页名上带完整信息的悬停提示', String(nameSpan?.props?.title))
+check(nameSpan?.props?.title === `${SEED_ZH_TITLE0} · 第 1/2 页`, '页名上带完整信息的悬停提示', String(nameSpan?.props?.title))
 check(windowListeners.some((listener) => listener.type === 'resize'), '面板打开时挂了 resize 监听（窗口变了重新量）')
 
 const hasClass = (node, name) =>
   node.type === 'button' && typeof node.props?.className === 'string' && node.props.className.split(' ').includes(name)
 const cells = findAll(panelTree, (node) => hasClass(node, 'dsq-cell'))
 check(cells.length === CELLS_PER_PAGE, `九宫格渲染 ${CELLS_PER_PAGE} 格`, `实际 ${cells.length}`)
-check(findElement(panelTree, (node) => node.props?.title === '继续') !== null, '第一格是「继续」')
+check(findElement(panelTree, (node) => node.props?.title === SEED_ZH_CELL0) !== null, '第一格渲染的是种子内容')
 
 // ---- 插入 ----
-const firstCell = findElement(panelTree, (node) => node.type === 'button' && node.props?.title === '继续')
+const firstCell = findElement(panelTree, (node) => node.type === 'button' && node.props?.title === SEED_ZH_CELL0)
 click(firstCell)
-check(insertCalls.length === 1 && insertCalls[0].text === '继续', '点第一格 → insertText 收到「继续」', JSON.stringify(insertCalls[0] ?? null))
+check(insertCalls.length === 1 && insertCalls[0].text === SEED_ZH_CELL0, '点第一格 → insertText 收到种子内容', JSON.stringify(insertCalls[0] ?? null))
 check(insertCalls[0]?.span?.draftRev === 1, '插入用的是 captureInsertion() 抓到的 span')
 panelTree = renderPanel()
 check(textOf(panelTree).includes('已插入'), '面板上出现「已插入」反馈')
 const flashBar = findElement(panelTree, (node) => node.props?.className === 'dsq-bar')
-check(textOf(flashBar).includes('已插入') && !textOf(flashBar).includes('常用'), '有提示时提示临时顶替页名')
+check(textOf(flashBar).includes('已插入') && !textOf(flashBar).includes(SEED_ZH_TITLE0), '有提示时提示临时顶替页名')
 
-const secondCell = findElement(panelTree, (node) => node.type === 'button' && node.props?.title === '先给结论，再给理由。')
+const secondCell = findElement(panelTree, (node) => node.type === 'button' && node.props?.title === SEED_ZH_CELL1)
 click(secondCell)
-check(insertCalls.length === 2 && insertCalls[1].text === '先给结论，再给理由。', '再点第二格 → 依次插入，面板不关')
+check(insertCalls.length === 2 && insertCalls[1].text === SEED_ZH_CELL1, '再点第二格 → 依次插入，面板不关')
 panelTree = renderPanel()
-check(findElement(panelTree, (node) => node.props?.title === '继续') !== null, '插入后面板仍在（能连点）')
+check(findElement(panelTree, (node) => node.props?.title === SEED_ZH_CELL0) !== null, '插入后面板仍在（能连点）')
 
 insertResult = false
-const thirdCell = findElement(panelTree, (node) => node.type === 'button' && node.props?.title === '用更短的版本重说一遍。')
+const thirdCell = findElement(panelTree, (node) => node.type === 'button' && node.props?.title === SEED_ZH_CELL2)
 click(thirdCell)
 check(insertCalls.length === 4, '插入被拒时会重抓一次 span 再试', `insertText 调用 ${insertCalls.length} 次`)
 panelTree = renderPanel()
@@ -733,7 +746,7 @@ insertResult = true
 inputPhase = 'submitting'
 const callsBeforeBusy = insertCalls.length
 panelTree = renderPanel()
-const busyCell = findElement(panelTree, (node) => node.type === 'button' && node.props?.title === '列成编号步骤，每步一句话。')
+const busyCell = findElement(panelTree, (node) => node.type === 'button' && node.props?.title === SEED_ZH_CELL3)
 click(busyCell)
 check(insertCalls.length === callsBeforeBusy, '发送中点格子根本不去试插入')
 panelTree = renderPanel()
@@ -742,7 +755,7 @@ check(textOf(panelTree).includes('正在发送'), '发送中说的是「正在�
 inputPhase = 'inert'
 const callsBeforeInert = insertCalls.length
 panelTree = renderPanel()
-const inertCell = findElement(panelTree, (node) => node.type === 'button' && node.props?.title === '用大白话解释，不要术语。')
+const inertCell = findElement(panelTree, (node) => node.type === 'button' && node.props?.title === SEED_ZH_CELL4)
 click(inertCell)
 check(insertCalls.length === callsBeforeInert, '输入框不可编辑时也不去试插入')
 panelTree = renderPanel()
@@ -756,7 +769,7 @@ check(nextPage !== null, '控制栏里有下一页按钮')
 click(nextPage)
 panelTree = renderPanel()
 check(
-  findElement(panelTree, (node) => node.props?.title === '找出这段代码里的 bug，按严重程度排序。') !== null,
+  findElement(panelTree, (node) => node.props?.title === SEED_ZH_P2CELL0) !== null,
   '切到第二页后渲染的是第二页的格子',
 )
 check(textOf(panelTree).includes('2/2'), '控制栏显示 2/2')
@@ -764,7 +777,7 @@ check(textOf(panelTree).includes('2/2'), '控制栏显示 2/2')
 fireTimers()
 panelTree = renderPanel()
 const secondBar = findElement(panelTree, (node) => node.props?.className === 'dsq-bar')
-check(textOf(secondBar).includes('代码'), '提示消失后控制栏显示当前页名，且翻页时跟着换', textOf(secondBar))
+check(textOf(secondBar).includes(SEED_ZH_TITLE1), '提示消失后控制栏显示当前页名，且翻页时跟着换', textOf(secondBar))
 
 // ---- 空格子 ----
 const emptyCell = findElement(panelTree, (node) => hasClass(node, 'dsq-cell-empty'))
@@ -783,14 +796,14 @@ panelTree = renderPanel()
 check(findElement(panelTree, (node) => node.type === 'textarea') === null, '进入编辑态时先留在九宫格上（不直接跳进某一格）')
 check(findElement(panelTree, (node) => node.type === 'button' && textOf(node) === '完成') !== null, '编辑态里 ✎ 变成「完成」')
 const insertsBeforeEdit = insertCalls.length
-const firstCellInEdit = findElement(panelTree, (node) => node.type === 'button' && node.props?.title === '改这一格：继续')
+const firstCellInEdit = findElement(panelTree, (node) => node.type === 'button' && node.props?.title === `改这一格：${SEED_ZH_CELL0}`)
 check(firstCellInEdit !== null, '编辑态的格子文案变成「改这一格」')
 click(firstCellInEdit)
 check(insertCalls.length === insertsBeforeEdit, '编辑态点格子不会插入文字', `插入调用 ${insertCalls.length}`)
 panelTree = renderPanel()
 const textarea = findElement(panelTree, (node) => node.type === 'textarea')
 check(textarea !== null, '编辑态点某一格才出现内容输入框')
-check(textarea?.props?.value === '继续', '输入框里是那一格的内容', String(textarea?.props?.value))
+check(textarea?.props?.value === SEED_ZH_CELL0, '输入框里是那一格的内容', String(textarea?.props?.value))
 const pageTitleInput = findAll(panelTree, (node) => node.type === 'input')
 check(pageTitleInput.length >= 1, '编辑态能改页名')
 

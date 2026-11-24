@@ -21,9 +21,24 @@
 - **控制栏**（面板底部那一条）：`‹ 1/2 ›` 翻页、中间显示**当前页名（tab 名称）**、`✎` 进编辑、
   `✕` 收起；插入结果之类的提示会临时顶替页名，2.4 秒后自动换回来。
 - **中英切换**：界面文案跟随 DSH 的**语言设置**（设置 → 通用 → 语言），中文显示中文、English 显示英文。
-  首次生成的示例短语也按当时的界面语言给（中文用户拿到「常用 / 代码」，英文用户拿到「Common / Code」）；
+  首次生成的 12 条 Prompt 是内置的（正文为中文原文，标签跟随界面语言：中文「提问·思考 / 决策·自己」，英文「Think / Decide」）；
   你自己改过的内容不会被翻译。
 - 改预设：点 `✎` → 点某一格 → 改名称和内容 → 保存。空格子点一下就是新建；右键任意格子也能直接改。
+
+---
+
+## 内置了什么
+
+首次打开就有 **12 条常用 Prompt**，不用自己配：
+
+| 页 | 格子 |
+|---|---|
+| **提问·思考** | 苏格拉底提问 · 双层解释 · 反向拆解 · 横纵分析 · 事实核查 · 专家会诊 · 第一性原理 · 跨领域借解 · 双向钢人论证 |
+| **决策·自己** | 最小实验 · 挖掘天赋 · 人生设计术 |
+
+这 12 条来自公众号文章 **[《都Agent时代了，我还是想分享给你这12个我最常用的Prompt》](https://mp.weixin.qq.com/s/NAdhdFrUq9-BKelqzqpwBQ)**（作者：**卡兹克**），原样内置、只做了排版整理。
+
+带 **【】** 的是占位符 —— 插进草稿后把【…】里的内容换成你自己的信息再发。不想要就点 `✎` 逐格清空，或整页删掉。
 
 ---
 
@@ -71,10 +86,10 @@
 C:\Users\mac\.dsh\quick-input\presets.json
 ```
 
-- 第一次使用会写入内置的两页示例（常用 / 代码）作为种子。
+- 第一次使用会写入内置的 **12 条常用 Prompt**（两页：提问·思考 / 决策·自己）作为种子。
 - 之后界面里改的所有内容都落在这个文件里，刷新页面、换浏览器都不丢。
 - 想恢复出厂：删掉这个文件，再刷新页面即可（会重新播种）。
-- 格式：`{ "version": 1, "pages": [ { "title": "常用", "cells": [ { "label": "继续", "text": "继续" }, null, ... ] } ] }`，每页固定 9 格，空格子是 `null`。
+- 格式：`{ "version": 1, "pages": [ { "title": "提问·思考", "cells": [ { "label": "苏格拉底提问", "text": "我的困惑是：…" }, null, ... ] } ] }`，每页固定 9 格，空格子是 `null`。
 
 `cordis.patch.yml` 里的 `config.presets` 只在**文件还不存在**时当种子用（默认那段是注释掉的示例）。
 
@@ -89,7 +104,7 @@ cd C:\Users\mac\Downloads\应声插件
 node dev\verify.mjs
 ```
 
-147 项检查，分三层：静态清单 → 宿主半区（假 ctx 真注册路由、真收发请求、真落盘）
+156 项检查，分三层：静态清单 → 宿主半区（假 ctx 真注册路由、真收发请求、真落盘）
 → 浏览器半区（`node:vm` + 迷你 React 真渲染，真点 ⊞、真点格子、真翻页、真保存）。
 它**不能**替代真机验证：真实槽位、主题、光标位置只能在页面里看。
 
@@ -144,7 +159,7 @@ node dev\verify.mjs
 |---|---|
 | `index.js` | 宿主半区：预设落盘 + `/quick-input/*` 路由（零依赖，只用 Node 内置模块） |
 | `client.js` | 浏览器半区：⊞ 按钮 + 九宫格面板 + 插入草稿（React 由宿主模块表提供，带中英字典） |
-| `presets.js` | 纯逻辑：默认种子（中/英各一套）+ 规范化 |
+| `presets.js` | 纯逻辑：内置 12 条 Prompt 种子（中/英各一套）+ 规范化 |
 | `cordis.patch.yml` | 往 profile 插一行 |
 | `icon.svg` | 插件图标 |
 | `dev/verify.mjs` | 离线自检 |
@@ -175,8 +190,8 @@ page reloads), matches the composer's height, and adapts its width to the space 
 ![dsh-quick-input — a 3×3 quick-phrase pad docked to the left of the composer](assets/preview.en.svg)
 
 - **UI language** follows the DSH language setting (Settings → General → Language): Chinese UI shows Chinese,
-  English UI shows English. The starter phrases seeded on first run follow the UI language too
-  (`Common` / `Code` for English); your own edits are never translated.
+  English UI shows English. The 12 built-in prompts are seeded on first run (Chinese source text,
+  English labels for an English UI); your own edits are never translated.
 - **Paging**: 9 cells per page, up to 12 pages. The bottom bar shows `‹ 1/2 ›`, the current page name,
   `✎` (edit) and `✕` (hide).
 - **Editing**: click `✎` → click a cell → edit name and text → Save. Empty cells create a new entry;
@@ -203,7 +218,7 @@ Delete it to get the starter phrases back.
 node dev\verify.mjs
 ```
 
-147 checks across three layers: manifest, host half (routes, normalisation, disk writes) and browser half
+156 checks across three layers: manifest, host half (routes, normalisation, disk writes) and browser half
 (real render via `node:vm` + a mini React: registration, insertion, paging, editing, i18n). It does **not**
 replace eyeballing the real page.
 

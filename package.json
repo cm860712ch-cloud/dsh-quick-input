@@ -1,7 +1,7 @@
 {
   "name": "dsh-quick-input",
-  "version": "0.1.0",
-  "description": "应声 · 快捷输入：输入框左侧的九宫格快捷短语面板，点一格就把预设文字插到光标处。9-grid quick-phrase pad docked left of the composer: click a cell to insert preset text at the caret. UI follows the DSH language (中文 / English).",
+  "version": "0.1.1",
+  "description": "应声 · 快捷输入：输入框左侧的九宫格快捷短语面板，点一格就把预设文字插到光标处。9-grid quick-phrase pad docked left of the composer: click a cell to insert preset text at the caret. UI follows the DSH language (中文 / English). Ships 12 built-in prompts on first run.",
   "type": "module",
   "license": "MIT",
   "author": "cm860712ch-cloud",
